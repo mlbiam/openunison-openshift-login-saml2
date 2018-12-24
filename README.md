@@ -2,7 +2,7 @@
 
 This application, built on OpenUnison, provides a simple way to add SAML2 authentication to your OpenShift cluster.  No external database needed.
 
-![OpenShift SAML2 Architecture](imgs/openunison_qs_openshift.png)
+![OpenShift SAML2 Architecture](imgs/openunison_openshift_login_saml2.png)
 
 # Deployment
 
