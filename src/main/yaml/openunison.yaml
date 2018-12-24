@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+spec:
+  ports:
+  - port: 443
+    targetPort: 8443
+    name: secure
+  selector:
+    deploymentConfig: "openunison"
+metadata:
+  name: secure-openunison
+  namespace: openunison
+  labels:
+    application: "openunison"
+  annotations:
+    description: OpenUnison's https port for #[OU_HOST]

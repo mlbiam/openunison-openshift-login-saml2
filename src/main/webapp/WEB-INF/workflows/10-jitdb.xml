@@ -1,0 +1,24 @@
+<workflow  name="jitdb" label="JIT" description="JIT" inList="false" orgid="687da09f-8ec1-48ac-b035-f2f182b9bd1e">
+  <tasks>
+    <!-- Uncomment this  -->
+    <!-- <customTask className="com.tremolosecurity.provisioning.customTasks.Attribute2Groups">
+      <param name="attributeName" value="groups"/>
+    </customTask> -->
+    <mapping  strict="true">
+      <map>
+        <mapping targetAttributeName="TREMOLO_USER_ID" sourceType="user" targetAttributeSource="uid"/>
+        <mapping targetAttributeName="fullName" sourceType="user" targetAttributeSource="cn"/>
+      </map>
+      <onSuccess>
+
+        
+        <provision sync="false" target="openshift" setPassword="false" onlyPassedInAttributes="true" >
+          <attributes>
+            <value>fullName</value>
+          </attributes>
+        </provision>
+        <resync keepExternalAttrs="false" changeRoot="true" newRoot="o=Tremolo" />
+      </onSuccess>
+    </mapping>
+  </tasks>
+</workflow>

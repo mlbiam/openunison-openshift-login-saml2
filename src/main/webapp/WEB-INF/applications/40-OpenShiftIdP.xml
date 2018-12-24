@@ -1,0 +1,49 @@
+<application name="OpenShiftIdP" isApp="false" azTimeoutMillis="30000">
+        <results/>
+        <urls>
+            <url regex="false">
+                <host>#[OU_HOST]</host>
+                <filterChain/>
+                <uri>/auth/idp/OpenShiftIdP</uri>
+                <results>
+                    <auSuccess></auSuccess>
+                    <auFail>Default Login Failure</auFail>
+                    <azSuccess></azSuccess>
+                    <azFail>Default Login Failure</azFail>
+                </results>
+                <azRules>
+                    <rule scope="dn" constraint="o=Tremolo"/>
+                </azRules>
+                <idp className="com.tremolosecurity.idp.providers.OpenIDConnectIdP">
+                    <params name="jwtSigningKey" value="unison-saml2-rp-sig"/>
+                    <params name="sessionStoreClassName" value="com.tremolosecurity.idp.providers.oidc.none.NoneBackend"/>
+                    <mappings strict="true">
+                        <mapping targetAttributeName="sub" targetAttributeSource="uid" sourceType="user"/>
+                        <mapping targetAttributeName="name" targetAttributeSource="cn " sourceType="user"/>
+                        <mapping targetAttributeName="preferred_username" targetAttributeSource="uid" sourceType="user"/>
+                    </mappings>
+                    <trusts>
+                        <trust name="openshift">
+                          <param name="clientID" value="openshift"/>
+                          <param name="clientSecret" value="#[OU_OIDC_OPENSHIFT_SECRET]"/>
+                          <param name="redirectURI" value="#[OU_OIDC_OPENSHIFT_REIDRECT]"/>
+                          <param name="codeLastMileKeyName" value="lastmile-oidc"/>
+                          <param name="authChainName" value="LoginService"/>
+                          <param name="accessTokenTimeToLive" value="1200000"/>
+                          <param name="accessTokenSkewMillis" value="1200000"/>
+                          <param name="codeTokenSkewMilis" value="1200000"/>
+                        </trust>
+                    </trusts>
+                </idp>
+            </url>
+        </urls>
+        <cookieConfig>
+            <sessionCookieName>tremoloSession</sessionCookieName>
+            <domain>#[OU_HOST]</domain>
+            <scope>-1</scope>
+            <logoutURI>/logout</logoutURI>
+            <keyAlias>session-unison</keyAlias>
+            <secure>true</secure>
+            <timeout>#[SESSION_INACTIVITY_TIMEOUT_SECONDS]</timeout>
+        </cookieConfig>
+    </application>
