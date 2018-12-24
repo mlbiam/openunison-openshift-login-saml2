@@ -3,7 +3,7 @@
     <!-- Uncomment this  -->
     <!-- <customTask className="com.tremolosecurity.provisioning.customTasks.Attribute2Groups">
       <param name="attributeName" value="groups"/>
-    </customTask> 
+    </customTask> -->
     <mapping  strict="true">
       <map>
         <mapping targetAttributeName="TREMOLO_USER_ID" sourceType="user" targetAttributeSource="uid"/>
@@ -12,7 +12,7 @@
       <onSuccess>
 
         
-        <provision sync="true" target="openshift" setPassword="false" onlyPassedInAttributes="true" >
+        <provision sync="false" target="openshift" setPassword="false" onlyPassedInAttributes="true" >
           <attributes>
             <value>fullName</value>
           </attributes>
@@ -20,8 +20,8 @@
         
       </onSuccess>
     </mapping>
-    -->
+    
 
-    <resync keepExternalAttrs="false" changeRoot="true" newRoot="o=Tremolo" />
+    
   </tasks>
 </workflow>
