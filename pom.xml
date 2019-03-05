@@ -9,10 +9,6 @@
   <url>http://openunison.io</url>
   <repositories>
     <repository>
-      <id>Tremolo Security Betas</id>
-      <url>https://nexus.tremolo.io/repository/betas/</url>
-    </repository>
-    <repository>
       <id>Tremolo Security Releases</id>
       <url>https://nexus.tremolo.io/repository/releases/</url>
     </repository>
@@ -44,11 +40,7 @@
       </exclusion> 
     </exclusions>
     </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.42</version>
-    </dependency>
+
     <dependency>
       <groupId>com.tremolosecurity.unison</groupId>
       <artifactId>openunison-on-undertow</artifactId>
