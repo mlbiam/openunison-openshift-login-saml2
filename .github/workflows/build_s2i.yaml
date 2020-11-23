@@ -18,13 +18,13 @@ jobs:
       env:
         OU_CONTAINER_DEST: ${{ secrets.OU_CONTAINER_DEST }}
       run: pwd ; /tmp/s2i build . docker.io/tremolosecurity/openunisons2idocker:latest $OU_CONTAINER_DEST 
-#    - name: login
-#      env:
-#        DOCKER_REGISTRY_URL: docker.io
-#        DOCKER_USERNAME: ${{ secrets.OU_REG_USER }}
-#        DOCKER_PASSWORD: ${{ secrets.OU_REG_PASSWORD }}
-#      run: docker login -u ${{ secrets.OU_REG_USER }} -p '${{ secrets.OU_REG_PASSWORD }}'
-#    - name: push
-#      env:
-#        OU_CONTAINER_DEST: ${{ secrets.OU_CONTAINER_DEST }}
-#      run: docker push  ${{ secrets.OU_CONTAINER_DEST }}
+    - name: login
+      env:
+        DOCKER_REGISTRY_URL: docker.io
+        DOCKER_USERNAME: ${{ secrets.OU_REG_USER }}
+        DOCKER_PASSWORD: ${{ secrets.OU_REG_PASSWORD }}
+      run: docker login -u ${{ secrets.OU_REG_USER }} -p '${{ secrets.OU_REG_PASSWORD }}'
+    - name: push
+      env:
+        OU_CONTAINER_DEST: ${{ secrets.OU_CONTAINER_DEST }}
+      run: docker push  ${{ secrets.OU_CONTAINER_DEST }}
