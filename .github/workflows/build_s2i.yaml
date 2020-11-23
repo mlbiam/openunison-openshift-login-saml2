@@ -13,11 +13,11 @@ jobs:
     - name: pull down s2i
       env:
         S2I_VERSION: 1.3.1
-      run: export BUID_DIR=$(pwd);cd /tmp ; wget https://github.com/openshift/source-to-image/releases/download/v1.3.1/source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz ;  tar  --no-overwrite-dir -xvzf ./source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz ; chmod +x /tmp/s2i
+      run:  wget https://github.com/openshift/source-to-image/releases/download/v1.3.1/source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz -o /tmp/ ;  tar  --no-overwrite-dir -xvzf ./tmp/source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz -C /tmp ; chmod +x /tmp/s2i
     - name: Build the Docker image
       env:
         OU_CONTAINER_DEST: ${{ secrets.OU_CONTAINER_DEST }}
-      run: cd $BUILD_DIR ; pwd ; /tmp/s2i build . docker.io/tremolosecurity/openunisons2idocker:latest $OU_CONTAINER_DEST 
+      run: pwd ; /tmp/s2i build . docker.io/tremolosecurity/openunisons2idocker:latest $OU_CONTAINER_DEST 
 #    - name: login
 #      env:
 #        DOCKER_REGISTRY_URL: docker.io
