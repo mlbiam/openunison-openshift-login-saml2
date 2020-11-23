@@ -16,7 +16,12 @@
                 </azRules>
                 <idp className="com.tremolosecurity.idp.providers.OpenIDConnectIdP">
                     <params name="jwtSigningKey" value="unison-saml2-rp-sig"/>
-                    <params name="sessionStoreClassName" value="com.tremolosecurity.idp.providers.oidc.none.NoneBackend"/>
+                    <params name="sessionStoreClassName" value="com.tremolosecurity.oidc.k8s.K8sSessionStore"/>
+                    <params name="k8sTarget" value="k8s" />
+                    <params name="k8sNameSpace" value="#[K8S_OPENUNISON_NS:openunison]" />
+                    <params name="trustConfigurationClassName" value="com.tremolosecurity.oidc.k8s.K8sLoadTrusts" />
+                    <params name="trusts.k8starget" value="k8s" />
+                    <params name="trusts.namespace" value="#[K8S_OPENUNISON_NS:openunison]" />
                     <mappings strict="true">
                         <mapping targetAttributeName="sub" targetAttributeSource="uid" sourceType="user"/>
                         <mapping targetAttributeName="name" targetAttributeSource="cn " sourceType="user"/>
