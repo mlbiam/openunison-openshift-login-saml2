@@ -13,7 +13,7 @@ jobs:
     - name: pull down s2i
       env:
         S2I_VERSION: 1.3.1
-      run: whoami;cd /tmp ; wget https://github.com/openshift/source-to-image/releases/download/v1.3.1/source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz ;  tar  --no-overwrite-dir -xvzf ./source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz ; cp /tmp/s2i /usr/bin/ ; ls /usr/bin/s2i
+      run: whoami;cd /tmp ; wget https://github.com/openshift/source-to-image/releases/download/v1.3.1/source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz ;  tar  --no-overwrite-dir -xvzf ./source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz ; chmod +x /tmp/s2i
 #    - name: Build the Docker image
 #      env:
 #        OU_CONTAINER_DEST: ${{ secrets.OU_CONTAINER_DEST }}
