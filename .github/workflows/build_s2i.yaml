@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: pull down s2i
+      env:
+        S2I_VERSION: 1.3.1
+      run: cd /tmp ; curl -L https://github.com/openshift/source-to-image/releases/download/v1.3.1/source-to-image-v1.3.1-a5a77147-linux-amd64.tar.gz |  tar xvz ; cp /tmp/s2i /usr/bin/
+#    - name: Build the Docker image
+#      env:
+#        OU_CONTAINER_DEST: ${{ secrets.OU_CONTAINER_DEST }}
+#      run: docker build . --file Dockerfile --tag $OU_CONTAINER_DEST
+#    - name: login
+#      env:
+#        DOCKER_REGISTRY_URL: docker.io
+#        DOCKER_USERNAME: ${{ secrets.OU_REG_USER }}
+#        DOCKER_PASSWORD: ${{ secrets.OU_REG_PASSWORD }}
+#      run: docker login -u ${{ secrets.OU_REG_USER }} -p '${{ secrets.OU_REG_PASSWORD }}'
+#    - name: push
+#      env:
+#        OU_CONTAINER_DEST: ${{ secrets.OU_CONTAINER_DEST }}
+#      run: docker push  ${{ secrets.OU_CONTAINER_DEST }}
