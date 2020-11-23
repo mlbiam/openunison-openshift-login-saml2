@@ -17,7 +17,7 @@ jobs:
     - name: Build the Docker image
       env:
         OU_CONTAINER_DEST: ${{ secrets.OU_CONTAINER_DEST }}
-      run: s2i build . docker.io/tremolosecurity/openunisons2idocker:latest $OU_CONTAINER_DEST 
+      run: cd $HOME ; pwd ; /tmp/s2i build . docker.io/tremolosecurity/openunisons2idocker:latest $OU_CONTAINER_DEST 
 #    - name: login
 #      env:
 #        DOCKER_REGISTRY_URL: docker.io
