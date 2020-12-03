@@ -3,7 +3,8 @@
   <applications openSessionCookieName="openSession" openSessionTimeout="9000">
     @[dir:applications]
   </applications>
-  <myvdConfig>WEB-INF/myvd.conf</myvdConfig>
+  <myvdConfig useWhen="HOST_CLUSER=openshift" useDefault="true" >WEB-INF/myvd.conf</myvdConfig>
+  <myvdConfig useWhen="HOST_CLUSER=k8s" >WEB-INF/myvd-k8s.conf</myvdConfig>
   <authMechs>
     @[dir:auth_mechs]
   </authMechs>
@@ -25,7 +26,7 @@
     
     <org name="OpenShift Enterprise" description="OpenShift enterprise deployment" uuid="B158BD40-0C1B-11E3-8FFD-0800200C9A66">
       <dynamicOrgs enabled="true" className="com.tremolosecurity.provisioning.orgs.LoadOrgsFromK8s">
-        <params name="k8starget" value="k8s" />
+        <params name="k8starget" value="openshift" />
         <params name="namespace" value="#[K8S_OPENUNISON_NS:openunison]" />
 
       </dynamicOrgs>
@@ -34,7 +35,7 @@
        
         <portal>
           <dynamicUrls enabled="true" className="com.tremolosecurity.provisioning.portal.LoadUrlsFromK8s">
-            <params name="k8starget" value="k8s" />
+            <params name="k8starget" value="openshift" />
             <params name="namespace" value="#[K8S_OPENUNISON_NS:openunison]" />
 
           </dynamicUrls>

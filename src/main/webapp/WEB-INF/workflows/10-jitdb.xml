@@ -1,4 +1,4 @@
-<workflow  name="jitdb" label="JIT" description="JIT" inList="false" orgid="687da09f-8ec1-48ac-b035-f2f182b9bd1e">
+<workflow  name="jitdb" label="JIT" description="JIT" inList="false" orgid="687da09f-8ec1-48ac-b035-f2f182b9bd1e" useWhen="HOST_CLUSER=openshift" useDefault="true">
   <tasks>
     <!-- Uncomment this  -->
     <!-- <customTask className="com.tremolosecurity.provisioning.customTasks.Attribute2Groups">
